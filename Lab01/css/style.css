@@ -1,0 +1,86 @@
+body {
+    background-color: #d8da3d; /* amarillo verdoso, como en el tutorial */
+    color: purple;
+    font-family: Georgia, "Times New Roman", serif;
+    margin-left: 12em;
+    margin-right: 3em;
+}
+
+header {
+    margin-bottom: 2em;
+}
+
+h1 {
+    font-family: Helvetica, Geneva, Arial, sans-serif;
+    margin-bottom: 1em;
+}
+
+h2 {
+    font-family: Helvetica, Geneva, Arial, sans-serif;
+}
+
+nav {
+    position: absolute;
+    left: 1em;
+    top: 2em;
+    width: 9em;
+}
+
+nav ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+nav li {
+    background: white;
+    margin: 0.5em 0;
+    padding: 0.3em;
+    border-right: 1em solid black;
+}
+
+nav a {
+    text-decoration: none;
+    font-family: Helvetica, Geneva, Arial, sans-serif;
+}
+
+nav a:link {
+    color: blue;
+}
+
+nav a:visited {
+    color: purple;
+}
+
+nav a:hover {
+    text-decoration: underline;
+}
+
+main {
+    max-width: 900px;
+}
+
+article {
+    margin-bottom: 2em;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th,
+td {
+    border: 1px solid purple;
+    padding: 8px;
+}
+
+figure img {
+    max-width: 300px;
+}
+
+footer {
+    margin-top: 3em;
+    padding-top: 1em;
+    border-top: thin dotted;
+}
