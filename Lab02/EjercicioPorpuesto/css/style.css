@@ -1,0 +1,57 @@
+/* Reseteo y Box Model */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+
+/* Configuración del cuerpo */
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f4f6f9;
+    padding: 20px;
+}
+
+
+/* Grupo del formulario */
+
+.form-group {
+    margin-bottom: 15px;
+    width: 100%;
+    max-width: 400px;
+}
+
+
+/* Etiqueta */
+
+.form-label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #333;
+}
+
+
+/* Campo de entrada */
+
+.form-input {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+
+    transition: border-color 0.3s;
+}
+
+
+/* Estado focus */
+
+.form-input:focus {
+    border-color: #3182ce;
+    outline: none;
+    box-shadow: 0 0 5px rgba(49, 130, 206, 0.5);
+}

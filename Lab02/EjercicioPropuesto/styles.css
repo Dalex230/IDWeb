@@ -1,0 +1,309 @@
+/* ==========================================================
+   styles.css - Laboratorio 02: Registro de estudiantes
+   Introducción al Desarrollo Web | Formularios y Box Model
+   ----------------------------------------------------------
+   Convención de especificidad: solo selectores de clase y de
+   etiqueta (sin IDs, sin !important), para que la cascada sea
+   predecible y cada regla se pueda sobrescribir con facilidad.
+   ========================================================== */
+
+
+/* ---------- 1. Variables de diseño ---------- */
+:root {
+  --tinta: #1b2a41;        /* texto principal y legends */
+  --tinta-suave: #4a5b6e;  /* texto secundario */
+  --fondo: #e6ecef;        /* fondo de la página */
+  --papel: #ffffff;        /* fondo de la tarjeta */
+  --borde: #b9c4cc;        /* bordes de campos */
+  --acento: #0e7c86;       /* foco y acciones */
+  --acento-hover: #0a626a;
+  --acento-active: #084c53;
+  --error: #b3261e;
+  --correcto: #2f7d4f;
+  --deshabilitado: #eef1f3;
+}
+
+
+/* ---------- 2. Reseteo global y Box Model ----------
+   border-box: el width/height declarado INCLUYE padding y borde.
+   Así un input con width: 100% y padding: 10px nunca se desborda. */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+
+/* ---------- 3. Base de la página ---------- */
+body {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;          /* centra la tarjeta en pantalla */
+  padding: 24px;
+  background-color: var(--fondo);
+  color: var(--tinta);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.5;
+}
+
+
+/* ---------- 4. Tarjeta receptora (card) ----------
+   Content: el formulario | Padding: 32px | Border: franja superior
+   Margin: lo aporta el padding del body y el centrado en grid */
+.card {
+  width: 100%;
+  max-width: 640px;             /* ancho máximo: se adapta a móvil */
+  padding: 32px;
+  background-color: var(--papel);
+  border: 1px solid var(--borde);
+  border-top: 6px solid var(--acento);
+  border-radius: 12px;
+  box-shadow: 0 12px 32px rgba(27, 42, 65, 0.14),
+              0 2px 6px rgba(27, 42, 65, 0.08);
+}
+
+.card-header {
+  margin-bottom: 24px;
+}
+
+.card-title {
+  margin-bottom: 4px;
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 1.75rem;
+  line-height: 1.2;
+}
+
+.card-subtitle {
+  color: var(--tinta-suave);
+  font-size: 0.95rem;
+}
+
+
+/* ---------- 5. Bloques del formulario (fieldset y legend) ---------- */
+.form-block {
+  min-width: 0;                 /* evita que el fieldset desborde la tarjeta */
+  margin-bottom: 24px;
+  padding: 20px 18px 6px;
+  border: 1px solid var(--borde);
+  border-radius: 8px;
+}
+
+.form-legend {
+  margin-left: 4px;
+  padding: 3px 12px;
+  background-color: var(--tinta);
+  color: var(--papel);
+  border-radius: 4px;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+
+/* ---------- 6. Rejilla de campos ---------- */
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr;   /* móvil: una columna */
+  column-gap: 16px;
+}
+
+@media (min-width: 560px) {
+  .form-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .form-group--full {
+    grid-column: 1 / -1;        /* ocupa las dos columnas */
+  }
+}
+
+.form-group {
+  min-width: 0;
+  margin-bottom: 16px;
+}
+
+
+/* ---------- 7. Etiquetas y campos ---------- */
+.form-label {
+  display: block;
+  margin-bottom: 6px;
+  color: var(--tinta);
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.form-input {
+  display: block;
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid var(--borde);
+  border-radius: 6px;
+  background-color: var(--papel);
+  color: var(--tinta);
+  font-family: inherit;
+  font-size: 0.95rem;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.form-input::placeholder {
+  color: #7a8794;
+}
+
+.form-textarea {
+  min-height: 96px;
+  resize: vertical;
+}
+
+/* :hover - el cursor pasa por encima */
+.form-input:hover {
+  border-color: var(--tinta-suave);
+}
+
+/* :focus - el campo está activo (se mantiene un contorno visible) */
+.form-input:focus {
+  border-color: var(--acento);
+  outline: 2px solid transparent;
+  box-shadow: 0 0 0 3px rgba(14, 124, 134, 0.3);
+}
+
+/* Validación nativa: solo se marca DESPUÉS de que el usuario interactúa.
+   (:user-invalid es la versión real de la idea ":invalid:touched") */
+.form-input:user-invalid {
+  border-color: var(--error);
+}
+
+.form-input:user-invalid:focus {
+  box-shadow: 0 0 0 3px rgba(179, 38, 30, 0.25);
+}
+
+.form-input:user-valid:not(.form-textarea) {
+  border-color: var(--correcto);
+}
+
+/* :disabled - campo no editable */
+.form-input:disabled {
+  border-style: dashed;
+  background-color: var(--deshabilitado);
+  color: var(--tinta-suave);
+  cursor: not-allowed;
+}
+
+/* Texto de ayuda: se pone rojo si el campo anterior es inválido */
+.form-hint {
+  display: block;
+  margin-top: 4px;
+  color: var(--tinta-suave);
+  font-size: 0.8rem;
+}
+
+.form-input:user-invalid ~ .form-hint {
+  color: var(--error);
+}
+
+
+/* ---------- 8. Radio buttons y checkbox ---------- */
+.option-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 20px;
+}
+
+.option,
+.option-terms {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.option-label {
+  cursor: pointer;
+  font-size: 0.95rem;
+}
+
+.option-input {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--acento);
+  cursor: pointer;
+}
+
+.option-input:focus-visible {
+  outline: 3px solid rgba(14, 124, 134, 0.45);
+  outline-offset: 2px;
+}
+
+
+/* ---------- 9. Botones ---------- */
+.form-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.btn {
+  flex: 1 1 160px;
+  padding: 12px 16px;
+  border: 2px solid var(--acento);
+  border-radius: 6px;
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s, border-color 0.2s, transform 0.05s;
+}
+
+.btn-primary {
+  background-color: var(--acento);
+  color: var(--papel);
+}
+
+.btn-secondary {
+  background-color: var(--papel);
+  color: var(--acento-hover);
+}
+
+.btn:hover {
+  border-color: var(--acento-hover);
+}
+
+.btn-primary:hover {
+  background-color: var(--acento-hover);
+}
+
+.btn-secondary:hover {
+  background-color: var(--deshabilitado);
+}
+
+/* :active - mientras se mantiene presionado */
+.btn:active {
+  transform: translateY(1px);
+  border-color: var(--acento-active);
+}
+
+.btn-primary:active {
+  background-color: var(--acento-active);
+}
+
+.btn:focus-visible {
+  outline: 3px solid rgba(14, 124, 134, 0.45);
+  outline-offset: 2px;
+}
+
+/* :disabled - botón no disponible */
+.btn:disabled {
+  border-color: var(--borde);
+  background-color: var(--borde);
+  color: var(--tinta-suave);
+  cursor: not-allowed;
+  transform: none;
+}
+
+
+/* ---------- 10. Accesibilidad ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .form-input,
+  .btn {
+    transition: none;
+  }
+}

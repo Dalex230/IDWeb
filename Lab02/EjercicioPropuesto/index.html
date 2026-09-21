@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Registro de estudiantes | Sistema de Gestión Académica</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <main class="card">
+    <header class="card-header">
+      <h1 class="card-title">Registro de nuevo estudiante</h1>
+      <p class="card-subtitle">Completa los tres bloques para crear tu cuenta. Todos los campos son obligatorios, excepto los comentarios.</p>
+    </header>
+
+    <form action="/procesar" method="POST" class="form-container">
+
+      <!-- ========== BLOQUE 1: Información Personal ========== -->
+      <fieldset class="form-block">
+        <legend class="form-legend">Información Personal</legend>
+
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="nombres" class="form-label">Nombres</label>
+            <input type="text" id="nombres" name="nombres" class="form-input"
+                   required minlength="2" maxlength="60"
+                   pattern="[A-Za-zÁÉÍÓÚÜÑáéíóúüñ ]{2,60}"
+                   title="Solo letras y espacios (mínimo 2 caracteres)"
+                   autocomplete="given-name" placeholder="Ej. María Fernanda">
+            <span class="form-hint">Solo letras, mínimo 2 caracteres.</span>
+          </div>
+
+          <div class="form-group">
+            <label for="apellidos" class="form-label">Apellidos</label>
+            <input type="text" id="apellidos" name="apellidos" class="form-input"
+                   required minlength="2" maxlength="60"
+                   pattern="[A-Za-zÁÉÍÓÚÜÑáéíóúüñ ]{2,60}"
+                   title="Solo letras y espacios (mínimo 2 caracteres)"
+                   autocomplete="family-name" placeholder="Ej. Quispe Mamani">
+            <span class="form-hint">Solo letras, mínimo 2 caracteres.</span>
+          </div>
+
+          <div class="form-group form-group--full">
+            <label for="nacimiento" class="form-label">Fecha de nacimiento</label>
+            <input type="date" id="nacimiento" name="nacimiento" class="form-input"
+                   required min="1950-01-01" max="2010-12-31">
+            <span class="form-hint">Debe estar entre el 01/01/1950 y el 31/12/2010.</span>
+          </div>
+        </div>
+      </fieldset>
+
+      <!-- ========== BLOQUE 2: Información Académica ========== -->
+      <fieldset class="form-block">
+        <legend class="form-legend">Información Académica</legend>
+
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="codigo" class="form-label">Código de estudiante</label>
+            <input type="text" id="codigo" name="codigo" class="form-input"
+                   required pattern="[0-9]{8}" maxlength="8" inputmode="numeric"
+                   title="Exactamente 8 dígitos numéricos"
+                   autocomplete="off" placeholder="20261234">
+            <span class="form-hint">Exactamente 8 dígitos numéricos.</span>
+          </div>
+
+          <div class="form-group">
+            <label for="ciclo" class="form-label">Ciclo actual</label>
+            <input type="number" id="ciclo" name="ciclo" class="form-input"
+                   required min="1" max="10" step="1" placeholder="1 a 10">
+            <span class="form-hint">Un número entero del 1 al 10.</span>
+          </div>
+
+          <div class="form-group form-group--full">
+            <label for="carrera" class="form-label">Carrera profesional</label>
+            <select id="carrera" name="carrera" class="form-input" required>
+              <option value="" selected disabled>Selecciona tu carrera</option>
+              <option value="sistemas">Ingeniería de Sistemas</option>
+              <option value="software">Ingeniería de Software</option>
+              <option value="industrial">Ingeniería Industrial</option>
+              <option value="civil">Ingeniería Civil</option>
+              <option value="administracion">Administración</option>
+              <option value="contabilidad">Contabilidad</option>
+            </select>
+            <span class="form-hint">Elige una de la lista.</span>
+          </div>
+
+          <div class="form-group form-group--full">
+            <span id="turno-titulo" class="form-label">Turno</span>
+            <div class="option-list" role="radiogroup" aria-labelledby="turno-titulo">
+              <div class="option">
+                <input type="radio" id="turno-manana" name="turno" value="manana" class="option-input" required>
+                <label for="turno-manana" class="option-label">Mañana</label>
+              </div>
+              <div class="option">
+                <input type="radio" id="turno-tarde" name="turno" value="tarde" class="option-input">
+                <label for="turno-tarde" class="option-label">Tarde</label>
+              </div>
+              <div class="option">
+                <input type="radio" id="turno-noche" name="turno" value="noche" class="option-input">
+                <label for="turno-noche" class="option-label">Noche</label>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group form-group--full">
+            <label for="estado" class="form-label">Estado de matrícula</label>
+            <input type="text" id="estado" name="estado" class="form-input"
+                   value="Pendiente de registro" disabled>
+            <span class="form-hint">Este campo lo actualiza el sistema.</span>
+          </div>
+        </div>
+      </fieldset>
+
+      <!-- ========== BLOQUE 3: Información de la Cuenta ========== -->
+      <fieldset class="form-block">
+        <legend class="form-legend">Información de la Cuenta</legend>
+
+        <div class="form-grid">
+          <div class="form-group form-group--full">
+            <label for="email" class="form-label">Correo institucional</label>
+            <input type="email" id="email" name="email" class="form-input"
+                   required autocomplete="email"
+                   placeholder="usuario@universidad.edu.pe">
+            <span class="form-hint">Escribe un correo válido, por ejemplo usuario@universidad.edu.pe.</span>
+          </div>
+
+          <div class="form-group form-group--full">
+            <label for="password" class="form-label">Contraseña</label>
+            <input type="password" id="password" name="password" class="form-input"
+                   required minlength="8"
+                   pattern="(?=.*[A-Z])(?=.*[0-9]).{8,}"
+                   title="Mínimo 8 caracteres, con al menos una mayúscula y un número"
+                   autocomplete="new-password" placeholder="Crea una contraseña">
+            <span class="form-hint">Mínimo 8 caracteres, con una mayúscula y un número.</span>
+          </div>
+
+          <div class="form-group form-group--full">
+            <label for="comentarios" class="form-label">Comentarios (opcional)</label>
+            <textarea id="comentarios" name="comentarios" class="form-input form-textarea"
+                      maxlength="300" placeholder="¿Algo que debamos saber?"></textarea>
+            <span class="form-hint">Máximo 300 caracteres.</span>
+          </div>
+
+          <div class="form-group form-group--full">
+            <div class="option-terms">
+              <input type="checkbox" id="terminos" name="terminos" class="option-input" required>
+              <label for="terminos" class="option-label">Acepto los términos y condiciones del sistema académico</label>
+            </div>
+          </div>
+        </div>
+      </fieldset>
+
+      <div class="form-actions">
+        <button type="reset" class="btn btn-secondary">Limpiar formulario</button>
+        <button type="submit" class="btn btn-primary">Registrar estudiante</button>
+      </div>
+
+    </form>
+  </main>
+
+</body>
+</html>

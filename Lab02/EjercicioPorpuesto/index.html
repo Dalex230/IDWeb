@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Ejercicio Resuelto - Formulario</title>
+
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+    <form action="/procesar" method="POST" class="form-container">
+
+        <fieldset>
+
+            <legend>Datos de Acceso</legend>
+
+            <div class="form-group">
+
+                <label for="email" class="form-label">
+                    Correo Institucional:
+                </label>
+
+                <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    class="form-input"
+                    required
+                    placeholder="usuario@universidad.edu.pe"
+                >
+
+            </div>
+
+        </fieldset>
+
+    </form>
+
+</body>
+</html>
