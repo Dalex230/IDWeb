@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sistema Web de Gestión Académica - Landing Page</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<style>
+  :root {
+    --azul: #0d3b66;
+    --azul-claro: #1d5f9e;
+    --acento: #f4a300;
+  }
+  body { font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif; color:#222; }
+
+  /* ---------- 2. HERO SECTION (Flexbox nativo) ---------- */
+  .hero {
+    display: flex;
+    flex-direction: column; /* Mobile: imagen debajo del texto */
+    align-items: center;
+    gap: 2rem;
+    padding: 3rem 1.5rem;
+    background: linear-gradient(135deg, var(--azul) 0%, var(--azul-claro) 100%);
+    color: #fff;
+  }
+  .hero-text { flex: 1; }
+  .hero-text h1 { font-size: 1.8rem; font-weight: 700; margin-bottom: 1rem; }
+  .hero-text p { font-size: 1.05rem; opacity: .92; margin-bottom: 1.5rem; }
+  .hero-img {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+  }
+  .hero-img svg { width: 100%; max-width: 340px; height: auto; }
+
+  @media (min-width: 768px) {
+    .hero {
+      flex-direction: row; /* Desktop: texto izquierda, imagen derecha */
+      text-align: left;
+      padding: 5rem 3rem;
+    }
+    .hero-text { text-align: left; }
+  }
+
+  /* ---------- 3. CATÁLOGO DE CURSOS (CSS Grid nativo) ---------- */
+  .cursos-section { padding: 3rem 1.5rem; max-width: 1200px; margin: 0 auto; }
+  .cursos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+  }
+  .curso-card {
+    background: #fff;
+    border: 1px solid #e5e5e5;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 6px rgba(0,0,0,.06);
+    display: flex;
+    flex-direction: column;
+  }
+  .curso-card .franja { height: 6px; background: var(--acento); }
+  .curso-card .cuerpo { padding: 1.25rem; flex: 1; display:flex; flex-direction:column; }
+  .curso-card h3 { font-size: 1.1rem; margin-bottom: .5rem; color: var(--azul); }
+  .curso-card p { font-size: .9rem; color:#555; flex:1; }
+  .curso-card .btn { align-self: flex-start; margin-top: .75rem; }
+
+  section-title-wrap { display:block; }
+  .section-title { font-size: 1.5rem; font-weight: 700; color: var(--azul); text-align:center; }
+  .section-sub { text-align:center; color:#666; margin-top:.25rem; }
+
+  /* ---------- 4. NOTICIAS Y EVENTOS ---------- */
+  .noticia-card img-placeholder,
+  .noticia-thumb {
+    height: 140px;
+    background: linear-gradient(135deg, var(--azul-claro), var(--azul));
+  }
+
+  footer { background:#0d1b2a; color:#aab4c0; }
+</style>
+</head>
+<body>
+
+<!-- 1. NAVEGACIÓN Y CABECERA -->
+<nav class="navbar navbar-expand-lg navbar-dark" style="background-color: var(--azul);">
+  <div class="container-fluid">
+    <a class="navbar-brand fw-semibold" href="#">Gestión Académica</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Alternar navegación">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item"><a class="nav-link active" href="#">Inicio</a></li>
+        <li class="nav-item"><a class="nav-link" href="#cursos">Cursos</a></li>
+        <li class="nav-item"><a class="nav-link" href="#noticias">Noticias</a></li>
+      </ul>
+      <div class="d-flex gap-2 flex-column flex-lg-row w-100 w-lg-auto">
+        <button class="btn btn-outline-light">Iniciar Sesión</button>
+        <button class="btn" style="background-color: var(--acento); color:#222;">Registrarse</button>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- 2. HERO SECTION -->
+<section class="hero">
+  <div class="hero-text">
+    <h1>Gestiona tu vida académica en un solo lugar</h1>
+    <p>Matrículas, horarios, notas y trámites universitarios, disponibles desde cualquier dispositivo, en cualquier momento.</p>
+    <button class="btn btn-lg" style="background-color: var(--acento); color:#222;">Explorar cursos</button>
+  </div>
+  <div class="hero-img">
+    <svg viewBox="0 0 300 240" xmlns="http://www.w3.org/2000/svg">
+      <rect x="20" y="30" width="260" height="160" rx="12" fill="#ffffff" opacity="0.15"/>
+      <rect x="40" y="55" width="140" height="14" rx="4" fill="#ffffff" opacity="0.85"/>
+      <rect x="40" y="80" width="200" height="10" rx="4" fill="#ffffff" opacity="0.5"/>
+      <rect x="40" y="98" width="180" height="10" rx="4" fill="#ffffff" opacity="0.5"/>
+      <circle cx="230" cy="145" r="30" fill="#f4a300"/>
+      <rect x="40" y="150" width="140" height="10" rx="4" fill="#ffffff" opacity="0.5"/>
+    </svg>
+  </div>
+</section>
+
+<!-- 3. CATÁLOGO DE CURSOS -->
+<section class="cursos-section" id="cursos">
+  <h2 class="section-title">Cursos ofertados</h2>
+  <p class="section-sub">1 columna en móvil, 2 en tablet, 3–4 en escritorio (auto-fit / minmax)</p>
+  <div class="cursos-grid">
+    <div class="curso-card"><div class="franja"></div><div class="cuerpo"><h3>Programación I</h3><p>Lógica computacional y algoritmos básicos con ejercicios prácticos.</p><button class="btn btn-sm btn-outline-primary">Ver detalle</button></div></div>
+    <div class="curso-card"><div class="franja"></div><div class="cuerpo"><h3>Bases de Datos</h3><p>Modelado entidad-relación, normalización y consultas SQL.</p><button class="btn btn-sm btn-outline-primary">Ver detalle</button></div></div>
+    <div class="curso-card"><div class="franja"></div><div class="cuerpo"><h3>Desarrollo Web</h3><p>Flexbox, CSS Grid, Bootstrap y buenas prácticas responsive.</p><button class="btn btn-sm btn-outline-primary">Ver detalle</button></div></div>
+    <div class="curso-card"><div class="franja"></div><div class="cuerpo"><h3>Redes de Computadoras</h3><p>Arquitecturas TCP/IP, subredes y seguridad perimetral.</p><button class="btn btn-sm btn-outline-primary">Ver detalle</button></div></div>
+    <div class="curso-card"><div class="franja"></div><div class="cuerpo"><h3>Sistemas Operativos</h3><p>Gestión de procesos, memoria y concurrencia.</p><button class="btn btn-sm btn-outline-primary">Ver detalle</button></div></div>
+    <div class="curso-card"><div class="franja"></div><div class="cuerpo"><h3>Ingeniería de Software</h3><p>Metodologías ágiles, ciclo de vida y control de calidad.</p><button class="btn btn-sm btn-outline-primary">Ver detalle</button></div></div>
+  </div>
+</section>
+
+<!-- 4. NOTICIAS Y EVENTOS (Bootstrap Components) -->
+<section class="py-5 bg-light" id="noticias">
+  <div class="container">
+    <h2 class="section-title mb-4">Noticias y eventos</h2>
+    <div class="row g-4">
+
+      <div class="col-12 col-md-6 col-lg-4">
+        <div class="card h-100 mb-4">
+          <div class="noticia-thumb"></div>
+          <div class="card-body">
+            <h5 class="card-title">Semana de la Innovación</h5>
+            <p class="card-text">Talleres y charlas sobre tecnología aplicada a la educación superior.</p>
+            <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#modalInfo" data-titulo="Semana de la Innovación" data-detalle="Del 12 al 16 de octubre, auditorio principal. Incluye talleres de IA, robótica y desarrollo web, además de charlas con egresados destacados.">Más información</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12 col-md-6 col-lg-4">
+        <div class="card h-100 mb-4">
+          <div class="noticia-thumb"></div>
+          <div class="card-body">
+            <h5 class="card-title">Convocatoria de Becas</h5>
+            <p class="card-text">Nuevas becas de excelencia académica para el próximo semestre.</p>
+            <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#modalInfo" data-titulo="Convocatoria de Becas" data-detalle="Inscripciones abiertas hasta el 30 de octubre. Cubre hasta el 70% de la pensión según promedio ponderado y situación socioeconómica.">Más información</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12 col-md-6 col-lg-4">
+        <div class="card h-100 mb-4">
+          <div class="noticia-thumb"></div>
+          <div class="card-body">
+            <h5 class="card-title">Feria Laboral 2026</h5>
+            <p class="card-text">Empresas aliadas presentan oportunidades de prácticas y empleo.</p>
+            <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#modalInfo" data-titulo="Feria Laboral 2026" data-detalle="Jueves 5 de noviembre, patio central. Participan más de 20 empresas del sector tecnológico y financiero.">Más información</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Modal Bootstrap -->
+<div class="modal fade" id="modalInfo" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modalTitulo">Detalle</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+      </div>
+      <div class="modal-body" id="modalDetalle">
+        Contenido del evento.
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer class="py-4 text-center">
+  <small>© 2026 Sistema Web de Gestión Académica</small>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+  // Rellena el modal dinámicamente según la tarjeta de noticia pulsada
+  const modalInfo = document.getElementById('modalInfo');
+  modalInfo.addEventListener('show.bs.modal', (event) => {
+    const btn = event.relatedTarget;
+    document.getElementById('modalTitulo').textContent = btn.getAttribute('data-titulo');
+    document.getElementById('modalDetalle').textContent = btn.getAttribute('data-detalle');
+  });
+</script>
+</body>
+</html>
