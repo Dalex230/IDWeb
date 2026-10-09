@@ -1,0 +1,45 @@
+/* Colores reutilizables */
+:root {
+  --bg:#f5f6f8; --card:#fff; --tx:#1d2330; --mut:#667085; --bd:#dde1e8;
+  --pri:#2563eb; --dan:#dc2626; --ok:#16a34a; --alb:#fde8e8; --alt:#9b1c1c;
+}
+
+/* Base */
+* { box-sizing: border-box; }
+body { margin:0; background:var(--bg); color:var(--tx); font-family:system-ui,-apple-system,"Segoe UI",sans-serif; }
+main { max-width:680px; margin:0 auto; padding:24px 16px; } /* contenedor centrado */
+h1 { font-size:1.4rem; margin:0 0 16px; }
+
+/* Tarjeta y formulario (2 columnas; .full ocupa el ancho completo) */
+.card { background:var(--card); border:1px solid var(--bd); border-radius:10px; padding:16px; margin-bottom:16px; }
+form { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+form .full { grid-column:1 / -1; }
+label { display:block; font-size:.8rem; color:var(--mut); margin-bottom:4px; }
+input { width:100%; padding:9px 11px; border:1px solid var(--bd); border-radius:8px; background:var(--bg); color:var(--tx); font-size:1rem; }
+button { padding:9px 14px; border:0; border-radius:8px; background:var(--pri); color:#fff; font-size:.9rem; cursor:pointer; }
+
+/* Mensajes de error de validación */
+#alertas div { background:var(--alb); color:var(--alt); padding:8px 12px; border-radius:8px; margin-bottom:12px; font-size:.9rem; }
+
+/* Filtros (la clase "activo" marca el filtro seleccionado) */
+.filtros { display:flex; gap:8px; margin-bottom:12px; flex-wrap:wrap; }
+.filtros button { background:var(--card); color:var(--tx); border:1px solid var(--bd); }
+.filtros button.activo { background:var(--pri); color:#fff; border-color:var(--pri); }
+.resumen { font-size:.85rem; color:var(--mut); margin-bottom:10px; }
+
+/* Lista de tareas */
+ul { list-style:none; margin:0; padding:0; }
+li.tarea { display:flex; gap:12px; align-items:center; padding:12px 14px; background:var(--card); border:1px solid var(--bd); border-radius:10px; margin-bottom:8px; }
+li.tarea .info { flex:1; min-width:0; }
+li.tarea .titulo { font-weight:600; overflow-wrap:anywhere; }
+li.tarea .meta { font-size:.8rem; color:var(--mut); }
+input[type=checkbox] { width:20px; height:20px; flex:none; accent-color:var(--ok); }
+.btn-del { background:var(--dan); padding:6px 10px; font-size:.8rem; }
+.vacio { text-align:center; color:var(--mut); padding:20px; }
+
+/* Tarea completada: texto tachado */
+li.tarea.completada { opacity:.75; }
+li.tarea.completada .titulo { text-decoration:line-through; color:var(--mut); }
+
+/* Celulares: formulario en una sola columna */
+@media (max-width:520px) { form { grid-template-columns:1fr; } }

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<!-- Gestor de Tareas Universitarias: estructura de la página (el comportamiento está en app.js) -->
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Gestor de Tareas Universitarias</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main>
+    <h1>Gestor de Tareas Universitarias</h1>
+
+    <!-- Formulario de alta (novalidate: la validación la hace app.js) -->
+    <section class="card">
+      <div id="alertas"></div> <!-- aquí app.js muestra los errores -->
+      <form id="form-tarea" novalidate>
+        <div class="full">
+          <label for="titulo">Título</label>
+          <input id="titulo" type="text" autocomplete="off">
+        </div>
+        <div>
+          <label for="curso">Curso</label>
+          <input id="curso" type="text" autocomplete="off">
+        </div>
+        <div>
+          <label for="fecha">Fecha de entrega</label>
+          <input id="fecha" type="date">
+        </div>
+        <div class="full">
+          <button type="submit">Agregar tarea</button>
+        </div>
+      </form>
+    </section>
+
+    <!-- Filtros: data-filtro indica qué filtro aplica cada botón -->
+    <div class="filtros" id="filtros">
+      <button data-filtro="todas" class="activo">Todas</button>
+      <button data-filtro="pendientes">Pendientes</button>
+      <button data-filtro="completadas">Completadas</button>
+    </div>
+
+    <!-- Resumen y lista: app.js los llena dinámicamente -->
+    <div class="resumen" id="resumen"></div>
+    <ul id="lista"></ul>
+  </main>
+
+  <script src="app.js" defer></script>
+</body>
+</html>

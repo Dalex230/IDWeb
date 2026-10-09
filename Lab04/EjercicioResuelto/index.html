@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<!-- Ejercicio resuelto: estructura de la página (el comportamiento está en app.js) -->
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ejercicio resuelto: Lista de tareas</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main>
+    <h1>Módulo de Gestión de Tareas</h1>
+    <p>Inserción dinámica en el DOM, eventos y localStorage.</p>
+
+    <!-- Formulario: app.js captura su evento "submit" -->
+    <form id="todo-form">
+      <input id="todo-input" type="text" placeholder="Nueva tarea..." autocomplete="off">
+      <button type="submit">Agregar</button>
+    </form>
+
+    <!-- Lista vacía: app.js crea aquí los <li> -->
+    <ul id="todo-list"></ul>
+  </main>
+
+  <!-- defer: el script se ejecuta cuando el HTML ya está cargado -->
+  <script src="app.js" defer></script>
+</body>
+</html>
