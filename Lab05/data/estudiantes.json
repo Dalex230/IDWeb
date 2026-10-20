@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1,
+    "nombre": "Ana Torres",
+    "carrera": "Ingeniería de Sistemas",
+    "edad": 20
+  },
+  {
+    "id": 2,
+    "nombre": "Luis Pérez",
+    "carrera": "Ingeniería de Sistemas",
+    "edad": 21
+  },
+  {
+    "id": 3,
+    "nombre": "Carlos Mendoza",
+    "carrera": "Ingenier�a de Sistemas",
+    "edad": 22
+  },
+  {
+    "id": 4,
+    "nombre": "Carlos Mendoza",
+    "carrera": "Ingenier�a de Sistemas",
+    "edad": 22
+  }
+]
